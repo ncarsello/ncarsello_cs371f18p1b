@@ -1,53 +1,48 @@
-package hw;
+package hw
 
-import java.util.*;
+import java.util._
 
-public class Main {
+//remove if not needed
+import scala.collection.JavaConversions._
 
-  public static void main(final String[] args) {
+object Main {
+  def main(args: Array[String]): Unit = {
+          println("./topword")
+        val keyboard: Scanner = new Scanner(System.in)
+        val howmany: Int = keyboard.nextInt()
+        val minlength: Int = keyboard.nextInt()
+        val lastnwords: Int = keyboard.nextInt()
+        val input: Scanner = new Scanner(System.in)
+        val cloudinput: Queue[String] = new LinkedList[String]()
+        val cloudoutput: Map[String, Integer] = new HashMap[String, Integer]()
+        while (input.hasNext && (cloudinput.size < lastnwords)) {
+          val line: String = input.next()
+        if (line.length >= minlength) {
+          cloudinput.add(line)
+        }
+        }
+        while (!cloudinput.isEmpty) {
+          val word: String = cloudinput.remove()
+        if (cloudoutput.containsKey(word)) {
+          cloudoutput.put(word, cloudoutput.get(word) + 1)
+        }
+        else {
+          cloudoutput.put(word, 1)
+        }
+        }
+        val output: ArrayList[String] = new ArrayList[String]()
+        cloudoutput
+        .entrySet()
+        .stream()
+        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+        .forEachOrdered((x) => output.add(x.getKey))
+        var count: Int = 0
+        while (count < howmany && count < output.size) {
+          println(output.get(count) + ": " + cloudoutput.get(output.get(count))) {
+            count += 1;
+            count - 1
+        }
+        }
+        }
 
-    System.out.println("./topword");
-    Scanner keyboard = new Scanner(System.in);
-
-
-    final int howmany = keyboard.nextInt();
-    final int minlength = keyboard.nextInt();
-    final int lastnwords = keyboard.nextInt();
-
-    Scanner input = new Scanner(System.in);
-
-    final Queue<String> cloudinput = new LinkedList<>();
-    final Map<String, Integer> cloudoutput = new HashMap<>();
-
-
-    while (input.hasNext() && (cloudinput.size()<lastnwords)) {
-      String line = input.next();
-      if (line.length()>=minlength) {
-        cloudinput.add(line);
-      }
-
-      }
-    while (!cloudinput.isEmpty()) {
-      String word = cloudinput.remove();
-      if (cloudoutput.containsKey(word)) {
-        cloudoutput.put(word,cloudoutput.get(word)+1);
-      }
-      else{
-        cloudoutput.put(word, 1);
-      }
-    }
-    ArrayList<String> output = new ArrayList<>();
-    cloudoutput.entrySet().
-            stream().
-            sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).
-            forEachOrdered(x -> output.add(x.getKey()));
-
-    int count = 0;
-    while(count < howmany && count < output.size()) {
-      System.out.println(output.get(count) + ": " + cloudoutput.get(output.get(count)));
-      count++;
-    }
-  }
-
-
-}
+        }

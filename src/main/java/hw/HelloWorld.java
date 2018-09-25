@@ -1,12 +1,12 @@
-package hw;
+package hw
 
-public class HelloWorld {
+//remove if not needed
+import scala.collection.JavaConversions._
 
-  public String getMessage() {
-    return "hello world";
-  }
+class HelloWorld {
 
-  public int getYear() {
-    return 2017;
-  }
+  def getMessage(): String = "hello world"
+
+  def getYear(): Int = 2017
+
 }
